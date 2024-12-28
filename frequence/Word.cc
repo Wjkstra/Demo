@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "Word.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -34,7 +35,21 @@ void Word::read(const string& fileName){
     ifs.close();
 }
 
-void Word::store(const string& fileName){}
+void Word::store(const string& fileName){
+    ofstream ofs(fileName);
+    if(!ofs){
+        cerr<<"no filename"<<endl;
+        return;
+    }
+
+    for(auto& it : _result){
+        ofs<<"|   "<<setw(40)<<it._word
+            <<"   "<<setw(5)<<it._frequence
+            <<"   |"<<endl;
+    }
+
+    ofs.close();
+}
 
 string Word::dealWord(string& word){
     string newword;
@@ -60,6 +75,7 @@ void Word::insert(const string& word){
 
 void Word::display(){
     for(auto & it : _result){
-        printf("|   %50s  %5d  |\n",it._word.c_str(),it._frequence);
+    //    printf("|   %50s  %5d  |\n",it._word.c_str(),it._frequence);
+        cout<<"|   "<<std::setw(40)<<it._word<<std::setw(5)<<it._frequence<<"    |"<<endl;
     }
 }

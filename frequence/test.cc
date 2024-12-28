@@ -4,9 +4,15 @@
 using namespace std;
 
 void test0(){
-    string filename("Word.cc");
+    string source;
+    string result;
     Word w;
-    w.read(filename);
+    cout<<"Please input your source filename:";
+    cin>>source;
+    w.read(source);
+    cout<<"Please input your result filename:";
+    cin>>result;
+    w.store("result.txt");
     w.display();
 
 }
